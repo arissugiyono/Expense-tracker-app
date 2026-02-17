@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
 import 'package:intl/intl.dart';
 
-
 final formatter = DateFormat.yMd();
 
 const uuid = Uuid();
@@ -32,5 +31,27 @@ class Expense {
 
   String get formattedDate {
     return formatter.format(date);
+  }
+}
+
+class ExpenseBucket {
+  const ExpenseBucket({required this.category, required this.expenses});
+
+  ExpenseBucket.forCategory(List<Expense> allExpense, this.category)
+    : expenses = allExpense
+          .where((expense) => expense.category == category)
+          .toList();
+
+  final Category category;
+  final List<Expense> expenses;
+
+  double get totalExpenses {
+    double sum = 0;
+    // for (var i = 0; i < expenses.length; i++) return sum; cara lama
+    //todo : cara baru menggunakan Loop Fo-in
+    for (final expense in expenses) {
+      sum += expense.amount; // sama dengan sum = sum +exspense.amount;
+    }
+    return sum;
   }
 }
