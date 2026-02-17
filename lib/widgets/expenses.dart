@@ -90,7 +90,6 @@ class _ExpensesState extends State<Expenses> {
       ),
       body: Column(
         children: [
-          //*ToolBar with the add button
           Chart(expenses: _registeredExpenses),
           Expanded(child: mainContent),
         ],
